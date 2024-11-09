@@ -1,0 +1,547 @@
+05/07/24
+Q 1.Write The Sql Query to create a database name as Compnay and perform this all operations :
+
+1: Create Table Name As Employee Using Feild Eid , Ename , Eemail , Esal , Econtact.
+2. Add New Column name as address with varchar (200) data type in employee table using alter statement. 
+3. Add New 3 columns at a time in employee table name as role with varchar(200) data type , adharno varchar(200), panno varchar(200) using alter add option.
+4. You have to drop column name adharno from employee table using alter drop statement. 
+5. You have to rename column salary to sal from student table using alter rename option.
+6. Write SQL query to insert only id, name, contact & adharno in employee table.
+7. Display All Record Of Employee Table.
+8. Update Employee Record By contact.
+9. Delete Employee Record By adharno.
+10. Insert Five Record Of  Employee Table.
+11. Display All Record Of Employee Table.
+12. Update Employee Record By Id.
+13. Delete Employee Record By Name.
+14. wirte sql query to modify the size of adharno column.
+15. delete all record of employee table.
+
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 20
+Server version: 8.0.37 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database company;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use company;
+Database changed
+mysql> create table Employee(Eid int,Ename varchar(200),Eemail varchar(200),Esal int(5),Econtact varchar(20));
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+
+mysql> select *from Employee;
+Empty set (0.01 sec)
+
+mysql> desc Employee;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| Eid      | int          | YES  |     | NULL    |       |
+| Ename    | varchar(200) | YES  |     | NULL    |       |
+| Eemail   | varchar(200) | YES  |     | NULL    |       |
+| Esal     | int          | YES  |     | NULL    |       |
+| Econtact | varchar(20)  | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> alter table Employee add column(address varchar(200));
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table Employee add column(role varchar(200),adharno varchar(200),panno varchar(200));
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Employee;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| Eid      | int          | YES  |     | NULL    |       |
+| Ename    | varchar(200) | YES  |     | NULL    |       |
+| Eemail   | varchar(200) | YES  |     | NULL    |       |
+| Esal     | int          | YES  |     | NULL    |       |
+| Econtact | varchar(20)  | YES  |     | NULL    |       |
+| address  | varchar(200) | YES  |     | NULL    |       |
+| role     | varchar(200) | YES  |     | NULL    |       |
+| adharno  | varchar(200) | YES  |     | NULL    |       |
+| panno    | varchar(200) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+9 rows in set (0.00 sec)
+
+mysql> alter table Employee drop column adharno;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Employee;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| Eid      | int          | YES  |     | NULL    |       |
+| Ename    | varchar(200) | YES  |     | NULL    |       |
+| Eemail   | varchar(200) | YES  |     | NULL    |       |
+| Esal     | int          | YES  |     | NULL    |       |
+| Econtact | varchar(20)  | YES  |     | NULL    |       |
+| address  | varchar(200) | YES  |     | NULL    |       |
+| role     | varchar(200) | YES  |     | NULL    |       |
+| panno    | varchar(200) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> alter table Employee rename column Esal to salary;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Employee;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| Eid      | int          | YES  |     | NULL    |       |
+| Ename    | varchar(200) | YES  |     | NULL    |       |
+| Eemail   | varchar(200) | YES  |     | NULL    |       |
+| salary   | int          | YES  |     | NULL    |       |
+| Econtact | varchar(20)  | YES  |     | NULL    |       |
+| address  | varchar(200) | YES  |     | NULL    |       |
+| role     | varchar(200) | YES  |     | NULL    |       |
+| panno    | varchar(200) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> insert into Employee(Eid,Ename,salary)values(1,'Vaibhu',90000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select *from Employee;
++------+--------+--------+--------+----------+---------+------+-------+
+| Eid  | Ename  | Eemail | salary | Econtact | address | role | panno |
++------+--------+--------+--------+----------+---------+------+-------+
+|    1 | Vaibhu | NULL   |  90000 | NULL     | NULL    | NULL | NULL  |
++------+--------+--------+--------+----------+---------+------+-------+
+1 row in set (0.00 sec)
+
+mysql> desc Employee;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| Eid      | int          | YES  |     | NULL    |       |
+| Ename    | varchar(200) | YES  |     | NULL    |       |
+| Eemail   | varchar(200) | YES  |     | NULL    |       |
+| salary   | int          | YES  |     | NULL    |       |
+| Econtact | varchar(20)  | YES  |     | NULL    |       |
+| address  | varchar(200) | YES  |     | NULL    |       |
+| role     | varchar(200) | YES  |     | NULL    |       |
+| panno    | varchar(200) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> update Employee set Econtact=9876544356;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from Employee;
++------+--------+--------+--------+------------+---------+------+-------+
+| Eid  | Ename  | Eemail | salary | Econtact   | address | role | panno |
++------+--------+--------+--------+------------+---------+------+-------+
+|    1 | Vaibhu | NULL   |  90000 | 9876544356 | NULL    | NULL | NULL  |
++------+--------+--------+--------+------------+---------+------+-------+
+1 row in set (0.00 sec)
+
+mysql> delete from Employee where adharno;
+ERROR 1054 (42S22): Unknown column 'adharno' in 'where clause'
+mysql>
+
+
+
+
+
+
+
+
+06/07/24
+Q 1.Write The Sql Query to create a database name as College and perform this all operations :
+
+1 :  Create Table Name As Student.
+2 : Insert 10 records in Student tables using studid , studname , studemail , studcontact , studaddress.
+3 : Display All Record Of Student Table.
+4 : Write SQL Query to display only name, email and contact from student table.
+5 : Write SQL Query to delete Student whose id is 1. 
+6 : Write SQL Query to delete Student whose name is ram. 
+7 : Write SQL Query to update student whose id is 5.
+8 : Write SQL Query to change name, email and contact of student whose is id 3.
+9.Write SQL Query to delete studcontact, studaddress of student whose is id 8.
+10.Write SQL Query to copy all details one table to another table.
+
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 19
+Server version: 8.0.37 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create collage;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'collage' at line 1
+mysql> use collage;
+Database changed
+mysql> create table student(studid int(5),studname varchar(200),studemail varchar(200),studcontact int(10),studaddress varchar(200));
+Query OK, 0 rows affected, 2 warnings (0.06 sec)
+
+mysql> insert into student values(1,'vaibhu','vaibhu@gmail.com',987654,'kharsoli');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into student values(2,'vaishu','vaishu@gmail.com',876594,'akkalkot');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into student values(3,'mayu','mayu@gmail.com',78645,'faltan');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(4,'kaju','kaju@gmail.com',98764,'chinhwad');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into student values(5,'rups','rups@gmail.com',86757,'latur');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into student values(6,'unnu','unni@gmail.com',76859,'nagar');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into student values(7,'aaru','arri@gmail.com',76359,'mohol');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into student values(8,'appe','appu@gmail.com',78953,'satara');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into student values(9,'vibhiii','vibhu@gmail.com',74553,'pune');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into student values(10,'punma','punii@gmail.com',93456,'pandharpur');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select *from student;
++--------+----------+------------------+-------------+-------------+
+| studid | studname | studemail        | studcontact | studaddress |
++--------+----------+------------------+-------------+-------------+
+|      1 | vaibhu   | vaibhu@gmail.com |      987654 | kharsoli    |
+|      2 | vaishu   | vaishu@gmail.com |      876594 | akkalkot    |
+|      3 | mayu     | mayu@gmail.com   |       78645 | faltan      |
+|      4 | kaju     | kaju@gmail.com   |       98764 | chinhwad    |
+|      5 | rups     | rups@gmail.com   |       86757 | latur       |
+|      6 | unnu     | unni@gmail.com   |       76859 | nagar       |
+|      7 | aaru     | arri@gmail.com   |       76359 | mohol       |
+|      8 | appe     | appu@gmail.com   |       78953 | satara      |
+|      9 | vibhiii  | vibhu@gmail.com  |       74553 | pune        |
+|     10 | punma    | punii@gmail.com  |       93456 | pandharpur  |
++--------+----------+------------------+-------------+-------------+
+10 rows in set (0.03 sec)
+
+mysql> select studname,studemail,studcontact from student;
++----------+------------------+-------------+
+| studname | studemail        | studcontact |
++----------+------------------+-------------+
+| vaibhu   | vaibhu@gmail.com |      987654 |
+| vaishu   | vaishu@gmail.com |      876594 |
+| mayu     | mayu@gmail.com   |       78645 |
+| kaju     | kaju@gmail.com   |       98764 |
+| rups     | rups@gmail.com   |       86757 |
+| unnu     | unni@gmail.com   |       76859 |
+| aaru     | arri@gmail.com   |       76359 |
+| appe     | appu@gmail.com   |       78953 |
+| vibhiii  | vibhu@gmail.com  |       74553 |
+| punma    | punii@gmail.com  |       93456 |
++----------+------------------+-------------+
+10 rows in set (0.00 sec)
+
+mysql> delete from student where studid=1;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select *from student;
++--------+----------+------------------+-------------+-------------+
+| studid | studname | studemail        | studcontact | studaddress |
++--------+----------+------------------+-------------+-------------+
+|      2 | vaishu   | vaishu@gmail.com |      876594 | akkalkot    |
+|      3 | mayu     | mayu@gmail.com   |       78645 | faltan      |
+|      4 | kaju     | kaju@gmail.com   |       98764 | chinhwad    |
+|      5 | rups     | rups@gmail.com   |       86757 | latur       |
+|      6 | unnu     | unni@gmail.com   |       76859 | nagar       |
+|      7 | aaru     | arri@gmail.com   |       76359 | mohol       |
+|      8 | appe     | appu@gmail.com   |       78953 | satara      |
+|      9 | vibhiii  | vibhu@gmail.com  |       74553 | pune        |
+|     10 | punma    | punii@gmail.com  |       93456 | pandharpur  |
++--------+----------+------------------+-------------+-------------+
+9 rows in set (0.00 sec)
+
+mysql> update student set studname='Ram',studemail='ram@gmail.com',studcontact=84213 where studid=10;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from student;
++--------+----------+------------------+-------------+-------------+
+| studid | studname | studemail        | studcontact | studaddress |
++--------+----------+------------------+-------------+-------------+
+|      2 | vaishu   | vaishu@gmail.com |      876594 | akkalkot    |
+|      3 | mayu     | mayu@gmail.com   |       78645 | faltan      |
+|      4 | kaju     | kaju@gmail.com   |       98764 | chinhwad    |
+|      5 | rups     | rups@gmail.com   |       86757 | latur       |
+|      6 | unnu     | unni@gmail.com   |       76859 | nagar       |
+|      7 | aaru     | arri@gmail.com   |       76359 | mohol       |
+|      8 | appe     | appu@gmail.com   |       78953 | satara      |
+|      9 | vibhiii  | vibhu@gmail.com  |       74553 | pune        |
+|     10 | Ram      | ram@gmail.com    |       84213 | pandharpur  |
++--------+----------+------------------+-------------+-------------+
+9 rows in set (0.00 sec)
+
+mysql> delete from student where studname='Ram';
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select *from student;
++--------+----------+------------------+-------------+-------------+
+| studid | studname | studemail        | studcontact | studaddress |
++--------+----------+------------------+-------------+-------------+
+|      2 | vaishu   | vaishu@gmail.com |      876594 | akkalkot    |
+|      3 | mayu     | mayu@gmail.com   |       78645 | faltan      |
+|      4 | kaju     | kaju@gmail.com   |       98764 | chinhwad    |
+|      5 | rups     | rups@gmail.com   |       86757 | latur       |
+|      6 | unnu     | unni@gmail.com   |       76859 | nagar       |
+|      7 | aaru     | arri@gmail.com   |       76359 | mohol       |
+|      8 | appe     | appu@gmail.com   |       78953 | satara      |
+|      9 | vibhiii  | vibhu@gmail.com  |       74553 | pune        |
++--------+----------+------------------+-------------+-------------+
+8 rows in set (0.00 sec)
+
+mysql> update student set studname='Punam',studemail='pun@gmail.com',studcontact=789067,studaddress='swndan' where studid=7;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from student;
++--------+----------+------------------+-------------+-------------+
+| studid | studname | studemail        | studcontact | studaddress |
++--------+----------+------------------+-------------+-------------+
+|      2 | vaishu   | vaishu@gmail.com |      876594 | akkalkot    |
+|      3 | mayu     | mayu@gmail.com   |       78645 | faltan      |
+|      4 | kaju     | kaju@gmail.com   |       98764 | chinhwad    |
+|      5 | rups     | rups@gmail.com   |       86757 | latur       |
+|      6 | unnu     | unni@gmail.com   |       76859 | nagar       |
+|      7 | Punam    | pun@gmail.com    |      789067 | swndan      |
+|      8 | appe     | appu@gmail.com   |       78953 | satara      |
+|      9 | vibhiii  | vibhu@gmail.com  |       74553 | pune        |
++--------+----------+------------------+-------------+-------------+
+8 rows in set (0.00 sec)
+
+mysql> update student set studname='Ram',studemail='r@gmail.com',studcontact=10987 where studid=3;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from student;
++--------+----------+------------------+-------------+-------------+
+| studid | studname | studemail        | studcontact | studaddress |
++--------+----------+------------------+-------------+-------------+
+|      2 | vaishu   | vaishu@gmail.com |      876594 | akkalkot    |
+|      3 | Ram      | r@gmail.com      |       10987 | faltan      |
+|      4 | kaju     | kaju@gmail.com   |       98764 | chinhwad    |
+|      5 | rups     | rups@gmail.com   |       86757 | latur       |
+|      6 | unnu     | unni@gmail.com   |       76859 | nagar       |
+|      7 | Punam    | pun@gmail.com    |      789067 | swndan      |
+|      8 | appe     | appu@gmail.com   |       78953 | satara      |
+|      9 | vibhiii  | vibhu@gmail.com  |       74553 | pune        |
++--------+----------+------------------+-------------+-------------+
+8 rows in set (0.00 sec)
+
+mysql> update student set studcontact=NULL,studaddress=''where studid=8;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from student;
++--------+----------+------------------+-------------+-------------+
+| studid | studname | studemail        | studcontact | studaddress |
++--------+----------+------------------+-------------+-------------+
+|      2 | vaishu   | vaishu@gmail.com |      876594 | akkalkot    |
+|      3 | Ram      | r@gmail.com      |       10987 | faltan      |
+|      4 | kaju     | kaju@gmail.com   |       98764 | chinhwad    |
+|      5 | rups     | rups@gmail.com   |       86757 | latur       |
+|      6 | unnu     | unni@gmail.com   |       76859 | nagar       |
+|      7 | Punam    | pun@gmail.com    |      789067 | swndan      |
+|      8 | appe     | appu@gmail.com   |        NULL |             |
+|      9 | vibhiii  | vibhu@gmail.com  |       74553 | pune        |
++--------+----------+------------------+-------------+-------------+
+8 rows in set (0.00 sec)
+
+mysql> create table student2(studid int,studname varchar(200),studemail varchar(200),studcontact varch
+ar(200),studaddress varchar(200));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into student2(studid,studname,studemail,studcontact,studaddress) select studid,studname,studemail,studcontact,studaddress from student;
+Query OK, 8 rows affected (0.01 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> select *from student2;
++--------+----------+------------------+-------------+-------------+
+| studid | studname | studemail        | studcontact | studaddress |
++--------+----------+------------------+-------------+-------------+
+|      2 | vaishu   | vaishu@gmail.com | 876594      | akkalkot    |
+|      3 | Ram      | r@gmail.com      | 10987       | faltan      |
+|      4 | kaju     | kaju@gmail.com   | 98764       | chinhwad    |
+|      5 | rups     | rups@gmail.com   | 86757       | latur       |
+|      6 | unnu     | unni@gmail.com   | 76859       | nagar       |
+|      7 | Punam    | pun@gmail.com    | 789067      | swndan      |
+|      8 | appe     | appu@gmail.com   | NULL        |             |
+|      9 | vibhiii  | vibhu@gmail.com  | 74553       | pune        |
++--------+----------+------------------+-------------+-------------+
+8 rows in set (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.37 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use employee;
+Database changed
+mysql> create table student(id int(5),name varchar(200),email varchar(200),contact varchar(200),salary int(5));
+Query OK, 0 rows affected, 2 warnings (0.15 sec)
+
+mysql> desc student;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int          | YES  |     | NULL    |       |
+| name    | varchar(200) | YES  |     | NULL    |       |
+| email   | varchar(200) | YES  |     | NULL    |       |
+| contact | varchar(200) | YES  |     | NULL    |       |
+| salary  | int          | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.07 sec)
+
+mysql> select *from student;
+Empty set (0.04 sec)
+
+mysql> select *from employee;
+Empty set (0.03 sec)
+
+mysql> alter table student(address varchar(200));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(address varchar(200))' at line 1
+mysql> alter table student add column(address varchar(200));
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int          | YES  |     | NULL    |       |
+| name    | varchar(200) | YES  |     | NULL    |       |
+| email   | varchar(200) | YES  |     | NULL    |       |
+| contact | varchar(200) | YES  |     | NULL    |       |
+| salary  | int          | YES  |     | NULL    |       |
+| address | varchar(200) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter table student add column(designation varchar(200),adharno varchar(200),panno varchar(200));
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| id          | int          | YES  |     | NULL    |       |
+| name        | varchar(200) | YES  |     | NULL    |       |
+| email       | varchar(200) | YES  |     | NULL    |       |
+| contact     | varchar(200) | YES  |     | NULL    |       |
+| salary      | int          | YES  |     | NULL    |       |
+| address     | varchar(200) | YES  |     | NULL    |       |
+| designation | varchar(200) | YES  |     | NULL    |       |
+| adharno     | varchar(200) | YES  |     | NULL    |       |
+| panno       | varchar(200) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+9 rows in set (0.00 sec)
+
+mysql> drop student column adharno;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student column adharno' at line 1
+mysql> alter table student drop column adharno;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| id          | int          | YES  |     | NULL    |       |
+| name        | varchar(200) | YES  |     | NULL    |       |
+| email       | varchar(200) | YES  |     | NULL    |       |
+| contact     | varchar(200) | YES  |     | NULL    |       |
+| salary      | int          | YES  |     | NULL    |       |
+| address     | varchar(200) | YES  |     | NULL    |       |
+| designation | varchar(200) | YES  |     | NULL    |       |
+| panno       | varchar(200) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> alter table student rename column salary to sal;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| id          | int          | YES  |     | NULL    |       |
+| name        | varchar(200) | YES  |     | NULL    |       |
+| email       | varchar(200) | YES  |     | NULL    |       |
+| contact     | varchar(200) | YES  |     | NULL    |       |
+| sal         | int          | YES  |     | NULL    |       |
+| address     | varchar(200) | YES  |     | NULL    |       |
+| designation | varchar(200) | YES  |     | NULL    |       |
+| panno       | varchar(200) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> alter table student rename column name 200 to 100;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '200 to 100' at line 1
+mysql> alter table student modify name varchar(100);
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| id          | int          | YES  |     | NULL    |       |
+| name        | varchar(100) | YES  |     | NULL    |       |
+| email       | varchar(200) | YES  |     | NULL    |       |
+| contact     | varchar(200) | YES  |     | NULL    |       |
+| sal         | int          | YES  |     | NULL    |       |
+| address     | varchar(200) | YES  |     | NULL    |       |
+| designation | varchar(200) | YES  |     | NULL    |       |
+| panno       | varchar(200) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> drop table student;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc student;
+ERROR 1146 (42S02): Table 'employee.student' doesn't exist
+mysql>
